@@ -1,2 +1,44 @@
 @import "tailwindcss";
 
+.global-size {
+  height: 100%;
+  width: 40rem;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Global WhatsApp-like Border System */
+.whatsapp-border {
+  border: 1px solid #e5e7eb; /* light gray */
+}
+
+.dark .whatsapp-border {
+  border-color: #374151;
+}
+
+/* Message Bubbles */
+.message-received {
+  border-radius: 18px 18px 18px 4px;
+  background-color: #f1f3f4;
+}
+
+.message-sent {
+  border-radius: 18px 18px 4px 18px;
+  background-color: #25d366;
+  color: white;
+}
+
+/* Panel Borders */
+.sidebar {
+  border-right: 1px solid #e5e7eb;
+}
+
+.chat-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.input-area {
+  border-top: 1px solid #e5e7eb;
+}

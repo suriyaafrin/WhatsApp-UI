@@ -10,10 +10,9 @@ export const chats = [
       { id: 2, text: "Hello!", sender: "me", time: "10:26 AM" },
       { id: 3, text: "How are you?", sender: "them", time: "10:27 AM" },
       { id: 4, text: "I'm good 😊", sender: "me", time: "10:28 AM" },
-      { id: 5, text: "See you soon!", sender: "them", time: "10:30 AM" }
-    ]
+      { id: 5, text: "See you soon!", sender: "them", time: "10:30 AM" },
+    ],
   },
-
   {
     id: 2,
     profileImage: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -24,10 +23,9 @@ export const chats = [
       { id: 1, text: "Are you coming?", sender: "them", time: "5:00 PM" },
       { id: 2, text: "Yes", sender: "me", time: "5:01 PM" },
       { id: 3, text: "Bring notes", sender: "them", time: "5:02 PM" },
-      { id: 4, text: "Okay 👍", sender: "me", time: "5:03 PM" }
-    ]
+      { id: 4, text: "Okay 👍", sender: "me", time: "5:03 PM" },
+    ],
   },
-
   {
     id: 3,
     profileImage: "https://randomuser.me/api/portraits/men/65.jpg",
@@ -38,10 +36,9 @@ export const chats = [
       { id: 1, text: "Did you finish the project?", sender: "them", time: "11:10 AM" },
       { id: 2, text: "Yes done", sender: "me", time: "11:12 AM" },
       { id: 3, text: "Sending file", sender: "me", time: "11:13 AM" },
-      { id: 4, text: "Project file sent", sender: "me", time: "11:15 AM" }
-    ]
+      { id: 4, text: "Project file sent", sender: "me", time: "11:15 AM" },
+    ],
   },
-
   {
     id: 4,
     profileImage: "https://randomuser.me/api/portraits/women/68.jpg",
@@ -52,10 +49,9 @@ export const chats = [
       { id: 1, text: "Party tonight?", sender: "them", time: "3:00 PM" },
       { id: 2, text: "Yes!", sender: "me", time: "3:01 PM" },
       { id: 3, text: "Come early", sender: "them", time: "3:02 PM" },
-      { id: 4, text: "Can't wait 🎉", sender: "me", time: "3:05 PM" }
-    ]
+      { id: 4, text: "Can't wait 🎉", sender: "me", time: "3:05 PM" },
+    ],
   },
-
   {
     id: 5,
     profileImage: "https://randomuser.me/api/portraits/men/75.jpg",
@@ -65,7 +61,7 @@ export const chats = [
     messages: [
       { id: 1, text: "Long time no see!", sender: "them", time: "7:00 PM" },
       { id: 2, text: "Yeah bro!", sender: "me", time: "7:01 PM" },
-      { id: 3, text: "Let's meet tomorrow", sender: "them", time: "7:02 PM" }
-    ]
-  }
+      { id: 3, text: "Let's meet tomorrow", sender: "them", time: "7:02 PM" },
+    ],
+  },
 ];
