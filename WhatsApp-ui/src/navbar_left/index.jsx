@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ChatSidebar = ({ chats, selectedChat, onSelectChat }) => {
+const NavbarLeft = ({ chats = [], selectedChat, setSelectedChat }) => {
   return (
-    <div className="w-96 border-r border-gray-200 bg-white flex flex-col h-full">
+    <div className="w-96 border-r border-gray-200 bg-white flex flex-col">
 
       {/* Upper Navbar */}
       <div className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-4 shadow-sm">
@@ -26,7 +26,13 @@ const ChatSidebar = ({ chats, selectedChat, onSelectChat }) => {
       {/* Search Bar */}
       <div className="p-4 border-b border-gray-200 bg-white">
         <div className="flex items-center bg-gray-100 rounded-3xl px-5 py-3">
-          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <svg 
+            className="w-5 h-5 text-gray-500" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth={2} 
+            viewBox="0 0 24 24"
+          >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
@@ -44,15 +50,15 @@ const ChatSidebar = ({ chats, selectedChat, onSelectChat }) => {
         {chats.map((chat) => (
           <div
             key={chat.id}
-            onClick={() => onSelectChat(chat)}
+            onClick={() => setSelectedChat(chat)}
             className={`flex items-center gap-4 p-4 hover:bg-gray-100 cursor-pointer transition-all ${
               selectedChat?.id === chat.id ? 'bg-blue-50 border-r-4 border-blue-600' : ''
             }`}
           >
-            <img
-              src={chat.profileImage}
-              alt={chat.userFullName}
-              className="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100"
+            <img 
+              src={chat.profileImage} 
+              alt={chat.userFullName} 
+              className="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100" 
             />
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-center">
@@ -68,4 +74,4 @@ const ChatSidebar = ({ chats, selectedChat, onSelectChat }) => {
   );
 };
 
-export default ChatSidebar;
+export default NavbarLeft;
