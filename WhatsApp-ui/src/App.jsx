@@ -1,23 +1,28 @@
 import { useState } from 'react'
 import './App.css'
 import { chats } from '../data/chat.js';
-// import ChatSidebar from './navbar_left'
-// import ChatWindow from './SearchBar'
-import ChatInbox from './ChatInbox/index.jsx';
-
-
-
-
-
+import ChatList from './Component/ChatList.jsx';
+import SearchBar from './Component/SearchBar.jsx';
+import SidebarHeader from './Component/SidebarHeader.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedChat, setSelectedChat] = useState(null)
+
+  const filteredChats = chats.filter((chat) =>
+    chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-      {/* <NavbarLeft />
-      <SearchBar /> */}
-      <ChatInbox/>
-      
+      <SidebarHeader />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <ChatList
+        filteredChats={filteredChats}
+        selectedChat={selectedChat}
+        setSelectedChat={setSelectedChat}
+        searchTerm={searchTerm}
+      />
     </>
   )
 }
