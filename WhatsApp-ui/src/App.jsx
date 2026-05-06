@@ -58,7 +58,7 @@ function App() {
               ...chat,
               messages: [...chat.messages, messageToSend, messageToReceive],
               lastMessage: newMessage.trim(),
-              lastMessageTime: now, // ✅ now exists
+              lastMessageTime: now, 
             }
           : chat,
       ),
@@ -68,7 +68,7 @@ function App() {
       ...prev,
       messages: [...prev.messages, messageToSend, messageToReceive],
       lastMessage: newMessage.trim(),
-      lastMessageTime: now, // ✅ now exists
+      lastMessageTime: now, 
     }));
 
     setNewMessage("");
