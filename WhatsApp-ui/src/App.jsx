@@ -1,28 +1,38 @@
-import { useState } from 'react'
-import './App.css'
-import { chats } from '../data/chat.js';
-import ChatList from './Component/ChatList.jsx';
-import SearchBar from './Component/SearchBar.jsx';
-import SidebarHeader from './Component/SidebarHeader.jsx';
-import ChatHeader from './Component/ChatHeader.jsx';
-import Inbox from './Component/Inbox.jsx';
-import MessageInput from './Component/MessageInput.jsx';
+import { useState, useRef } from "react";
+import "./App.css";
+import { chats } from "../data/chat.js";
+import ChatList from "./Component/ChatList.jsx";
+import SearchBar from "./Component/SearchBar.jsx";
+import SidebarHeader from "./Component/SidebarHeader.jsx";
+import ChatHeader from "./Component/ChatHeader.jsx";
+import Inbox from "./Component/Inbox.jsx";
+import MessageInput from "./Component/MessageInput.jsx";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedChat, setSelectedChat] = useState(null)
-  const [newMessage, setNewMessage] = useState("")
-  const [chatData, setChatData] = useState(chats)
-
-  const filteredChats = chatData.filter((chat) =>
-    chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase())
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [newMessage, setNewMessage] = useState("");
+  const [chatData, setChatData] = useState(
+    chats.map((chat) => ({ ...chat, lastMessageTime: Date.now() })),
   );
+
+  const notificationSound = useRef(
+    new Audio("/Music/universfield-happy-message-ping-351298.mp3"),
+  );
+
+  const filteredChats = chatData
+    .filter((chat) =>
+      chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
+    .sort((a, b) => b.lastMessageTime - a.lastMessageTime);
 
   const handleSendMessage = () => {
     if (!newMessage.trim() || !selectedChat) return;
 
+    const now = Date.now(); 
+
     const messageToSend = {
-      id: Date.now(),
+      id: now,
       sender: "me",
       text: newMessage.trim(),
       time: new Date().toLocaleTimeString([], {
@@ -32,7 +42,7 @@ function App() {
     };
 
     const messageToReceive = {
-      id: Date.now() + 1,
+      id: now + 1,
       sender: "them",
       text: newMessage.trim(),
       time: new Date().toLocaleTimeString([], {
@@ -48,6 +58,7 @@ function App() {
               ...chat,
               messages: [...chat.messages, messageToSend, messageToReceive],
               lastMessage: newMessage.trim(),
+              lastMessageTime: now, // ✅ now exists
             }
           : chat,
       ),
@@ -57,15 +68,21 @@ function App() {
       ...prev,
       messages: [...prev.messages, messageToSend, messageToReceive],
       lastMessage: newMessage.trim(),
+      lastMessageTime: now, // ✅ now exists
     }));
 
     setNewMessage("");
+
+    setTimeout(() => {
+      notificationSound.current.currentTime = 0;
+      notificationSound.current.play().catch((err) => {
+        console.warn("Sound playback failed:", err);
+      });
+    }, 500);
   };
 
   return (
     <div className="flex h-screen overflow-hidden">
-
-      {/* Left Sidebar */}
       <div className="w-87.5 flex flex-col border-r border-gray-300 bg-white">
         <SidebarHeader />
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -77,7 +94,6 @@ function App() {
         />
       </div>
 
-      {/* Right Chat Area */}
       <div className="flex-1 flex flex-col">
         {selectedChat ? (
           <>
@@ -95,9 +111,8 @@ function App() {
           </div>
         )}
       </div>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
