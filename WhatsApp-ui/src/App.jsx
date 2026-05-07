@@ -20,16 +20,10 @@ function App() {
     new Audio("/Music/universfield-happy-message-ping-351298.mp3"),
   );
 
-  const filteredChats = chatData
-    .filter((chat) =>
-      chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-    .sort((a, b) => b.lastMessageTime - a.lastMessageTime);
-
   const handleSendMessage = () => {
     if (!newMessage.trim() || !selectedChat) return;
 
-    const now = Date.now(); 
+    const now = Date.now();
 
     const messageToSend = {
       id: now,
@@ -58,7 +52,7 @@ function App() {
               ...chat,
               messages: [...chat.messages, messageToSend, messageToReceive],
               lastMessage: newMessage.trim(),
-              lastMessageTime: now, 
+              lastMessageTime: now,
             }
           : chat,
       ),
@@ -68,7 +62,7 @@ function App() {
       ...prev,
       messages: [...prev.messages, messageToSend, messageToReceive],
       lastMessage: newMessage.trim(),
-      lastMessageTime: now, 
+      lastMessageTime: now,
     }));
 
     setNewMessage("");
@@ -87,7 +81,7 @@ function App() {
         <SidebarHeader />
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ChatList
-          filteredChats={filteredChats}
+          chatData={chatData} // ← Important
           selectedChat={selectedChat}
           setSelectedChat={setSelectedChat}
           searchTerm={searchTerm}

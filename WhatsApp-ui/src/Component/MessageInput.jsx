@@ -1,4 +1,5 @@
 import React from "react";
+import { IoIosSend } from "react-icons/io"; 
 
 const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
   return (
@@ -26,7 +27,6 @@ const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
           </button>
         </div>
 
-  
         <div className="flex-1 flex items-center bg-gray-100 rounded-full px-6 py-2 border border-gray-200">
           <input
             type="text"
@@ -42,7 +42,7 @@ const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
           onClick={handleSendMessage}
           className="bg-green-600 hover:bg-green-700 text-white w-11 h-11 rounded-full flex items-center justify-center text-2xl active:scale-95 transition-all shadow-md"
         >
-          ↑
+          <IoIosSend /> 
         </button>
       </div>
     </div>

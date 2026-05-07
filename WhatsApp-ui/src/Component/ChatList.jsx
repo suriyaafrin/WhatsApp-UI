@@ -1,6 +1,18 @@
 import React from "react";
 
-const ChatList = ({ filteredChats, selectedChat, setSelectedChat, searchTerm }) => {
+const ChatList = ({ 
+  chatData,           
+  selectedChat, 
+  setSelectedChat, 
+  searchTerm 
+}) => {
+  
+  const filteredChats = chatData
+    .filter((chat) =>
+      chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => b.lastMessageTime - a.lastMessageTime);   // Sort by latest message
+
   return (
     <div className="flex-1 overflow-y-auto">
       {filteredChats.length > 0 ? (
@@ -24,9 +36,18 @@ const ChatList = ({ filteredChats, selectedChat, setSelectedChat, searchTerm }) 
                 <h3 className="font-semibold text-gray-800 truncate">
                   {chat.userFullName}
                 </h3>
-                <span className="text-xs text-gray-500">{chat.deliveryTime}</span>
+                <span className="text-xs text-gray-500">
+                  {chat.lastMessageTime 
+                    ? new Date(chat.lastMessageTime).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : chat.deliveryTime}
+                </span>
               </div>
-              <p className="text-gray-600 text-sm truncate mt-1">{chat.lastMessage}</p>
+              <p className="text-gray-600 text-sm truncate mt-1">
+                {chat.lastMessage || "No messages yet"}
+              </p>
             </div>
           </div>
         ))
