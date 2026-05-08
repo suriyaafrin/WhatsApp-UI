@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Sidebar — hidden on mobile when a chat is selected */}
+    
       <div
         className={`
           flex flex-col border-r border-gray-300 bg-white
@@ -99,7 +99,7 @@ function App() {
         />
       </div>
 
-      {/* Chat panel — hidden on mobile when no chat is selected */}
+     
       <div
         className={`
           flex-1 flex flex-col
