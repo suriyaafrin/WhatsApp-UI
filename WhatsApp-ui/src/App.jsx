@@ -75,23 +75,41 @@ function App() {
     }, 500);
   };
 
+  const handleBack = () => {
+    setSelectedChat(null);
+  };
+
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-87.5 flex flex-col border-r border-gray-300 bg-white">
+      {/* Sidebar — hidden on mobile when a chat is selected */}
+      <div
+        className={`
+          flex flex-col border-r border-gray-300 bg-white
+          w-full md:w-87.5
+          ${selectedChat ? "hidden md:flex" : "flex"}
+        `}
+      >
         <SidebarHeader />
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ChatList
-          chatData={chatData} // ← Important
+          chatData={chatData}
           selectedChat={selectedChat}
           setSelectedChat={setSelectedChat}
           searchTerm={searchTerm}
         />
       </div>
 
-      <div className="flex-1 flex flex-col">
+      {/* Chat panel — hidden on mobile when no chat is selected */}
+      <div
+        className={`
+          flex-1 flex flex-col
+          w-full md:w-auto
+          ${selectedChat ? "flex" : "hidden md:flex"}
+        `}
+      >
         {selectedChat ? (
           <>
-            <ChatHeader selectedChat={selectedChat} />
+            <ChatHeader selectedChat={selectedChat} onBack={handleBack} />
             <Inbox messages={selectedChat.messages || []} />
             <MessageInput
               newMessage={newMessage}

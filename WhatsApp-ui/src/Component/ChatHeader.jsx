@@ -1,10 +1,19 @@
-const ChatHeader = ({ selectedChat }) => {
+const ChatHeader = ({ selectedChat, onBack }) => {
   if (!selectedChat) return null;
 
   return (
     <div className="p-5 border-b border-gray-200 bg-gray-200 flex items-center justify-between">
       
       <div className="flex items-center gap-4">
+        {/* Back button — mobile only */}
+        <button
+          onClick={onBack}
+          className="md:hidden p-2 -ml-2 rounded-full hover:bg-gray-100 text-gray-600 hover:text-gray-800 transition-colors"
+          title="Back"
+        >
+          <i className="fa-solid fa-arrow-left text-xl"></i>
+        </button>
+
         <img
           src={selectedChat.profileImage}
           alt={selectedChat.userFullName}
